@@ -1,0 +1,66 @@
+@use "../variable.scss" as *;
+
+* {
+	user-select: none;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	border: none;
+	
+	&:before,
+	&:after {
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+		border: none;
+	}
+}
+
+
+body, 
+html {
+	height: 100%;
+	width: 100%;
+}
+
+header, 
+main, 
+footer {
+	width: 100%;
+}
+
+main {
+	flex-grow: 1;
+}
+
+a {
+	text-decoration: none;
+	display: block;
+	color: black;
+
+	&:hover,
+	&:visited {
+		text-decoration: none;
+		color: black;
+	}
+}
+
+ul {
+	list-style: none;
+}
+
+button {
+	font-family: $var-font-xl;
+	background-color: transparent;
+	border: none;
+	width: fit-content;
+	cursor: pointer;
+}
+
+button, input {
+	outline: none;
+
+	&:focus {
+		outline: none;
+	}
+}

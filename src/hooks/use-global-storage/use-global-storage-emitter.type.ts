@@ -1,0 +1,1 @@
+export type UseGlobalStorageEmitterReturn = <N = string, P = any>(name: N, payload?: P) => void;

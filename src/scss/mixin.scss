@@ -1,0 +1,68 @@
+@use "variable.scss" as *;
+
+@mixin abs-top-left(
+	$top:     0%,
+	$left:    0%, 
+	$z-index: 0, 
+	$width:   100%, 
+	$height:  100%
+) {
+  left:     $left;
+  top:      $top;
+  width:    $width;
+  height:   $height;
+  z-index:  $z-index;
+  position: absolute;
+}
+
+@mixin abs-bottom-left(
+	$bottom:  0%,
+	$left:    0%, 
+	$z-index: 0, 
+	$width:   100%, 
+	$height:  100%
+) {
+  left:     $left;
+  bottom:   $bottom;
+  width:    $width;
+  height:   $height;
+  z-index:  $z-index;
+  position: absolute;
+}
+
+@mixin abs-top-right(
+	$top:     0%, 
+	$right:   0%,
+	$z-index: 0, 
+	$width:   100%, 
+	$height:  100%
+) {
+  right:    $right;
+  top:      $top;
+  width:    $width;
+  height:   $height;
+  z-index:  $z-index;
+  position: absolute;
+}
+
+@mixin abs-bottom-right(
+	$right:   0%, 
+	$bottom:  0%, 
+	$z-index: 0, 
+	$width:   100%, 
+	$height:  100%
+) {
+  bottom:   $bottom;
+  right:    $right;
+  width:    $width;
+  height:   $height;
+  z-index:  $z-index;
+  position: absolute;
+}
+
+@mixin text-overflow($width: 100%, $text-overflow: ellipsis) {
+  width:         $width;
+  text-overflow: $text-overflow;
+  white-space:   nowrap;
+  overflow:      hidden;
+}
