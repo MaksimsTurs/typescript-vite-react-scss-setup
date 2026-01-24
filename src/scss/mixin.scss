@@ -45,6 +45,25 @@
   position: sticky;
 }
 
+@mixin dis-flex(
+  $align-items:     unset,
+  $justify-content: unset,
+  $gap:             unset,
+  $flex-direction:  unset,
+  $flex-wrap:       unset,
+  $flex-grow:       unset,
+  $flex-shrink:     unset
+) {
+  align-items:     $align-items;
+  justify-content: $justify-content;
+  gap:             $gap;
+  flex-direction:  $flex-direction;
+  flex-wrap:       $flex-wrap;
+  flex-grow:       $flex-grow;
+  flex-shrink:     $flex-shrink;
+  display: flex;
+}
+
 @mixin text-overflow($width: 100%, $text-overflow: ellipsis) {
   width:         $width;
   text-overflow: $text-overflow;
