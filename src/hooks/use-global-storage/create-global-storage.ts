@@ -1,13 +1,13 @@
 import type { 
 	GlobalStorageActions,
-} from "./use-global-storage.type";
+} from "./types/use-global-storage.type";
 import type { 
 	CreateGlobalStorageOptions,
 	CreateGlobalStorageReturn,
 	GlobalStorageSubscriber,
 	SetSelectedStorageUpdate,
 	UnsubscribeFromGlobalStorage,
-} from "./create-global-storage.type";
+} from "./types/create-global-storage.type";
 import { isFunction } from "@util/is.util";
 
 const STATES_TO_UPDATED: Set<CreateGlobalStorageReturn<any, any>> = new Set<CreateGlobalStorageReturn<any, any>>();

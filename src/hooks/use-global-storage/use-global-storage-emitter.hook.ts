@@ -1,6 +1,6 @@
-import type { UseGlobalStorageEmitterReturn } from "./use-global-storage-emitter.type";
-import type { GlobalStorage, GlobalStorageAction } from "./use-global-storage.type";
-import type { CreateGlobalStorageReturn, GlobalStorages } from "./create-global-storage.type";
+import type { UseGlobalStorageEmitterReturn } from "./types/use-global-storage-emitter.type";
+import type { GlobalStorage, GlobalStorageAction } from "./types/use-global-storage.type";
+import type { CreateGlobalStorageReturn, GlobalStorages } from "./types/create-global-storage.type";
 import type { KeyOf } from "@root/global.type";
 
 import { useCallback, useContext } from "react";

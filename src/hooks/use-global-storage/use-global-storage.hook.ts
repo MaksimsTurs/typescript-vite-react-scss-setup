@@ -1,10 +1,10 @@
 import type { KeyOf } from "@root/global.type";
-import type { GlobalStorage } from "./use-global-storage.type";
+import type { GlobalStorage } from "./types/use-global-storage.type";
 import type { 
   CreateGlobalStorageReturn,
   GlobalStorages,
   UnsubscribeFromGlobalStorage
-} from "./create-global-storage.type";
+} from "./types/create-global-storage.type";
 
 import { GlobalStorageContext } from "./components/Global-Storage-Provider.component";
 

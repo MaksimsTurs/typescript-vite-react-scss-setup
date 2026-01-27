@@ -1,5 +1,5 @@
-import type { ReactRouterContextValue } from "./use-react-router.type";
-import type { UsePathReturn } from "./use-path.type";
+import type { ReactRouterContextValue } from "./types/use-react-router.type";
+import type { UsePathReturn } from "./types/use-path.type";
 
 import { ReactRouterContext } from "./components/Routes.component";
 

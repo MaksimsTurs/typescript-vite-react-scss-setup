@@ -1,5 +1,5 @@
-import type { ReactRouterContextValue } from "./use-react-router.type";
-import type { UseNavigateReturn } from "./use-navigate.type";
+import type { ReactRouterContextValue } from "./types/use-react-router.type";
+import type { UseNavigateReturn } from "./types/use-navigate.type";
 
 import { useContext } from "react";
 

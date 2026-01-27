@@ -1,5 +1,5 @@
-import type { ReactRouterContextValue } from "./use-react-router.type";
-import type { UseParamsReturn } from "./use-params.type";
+import type { ReactRouterContextValue } from "./types/use-react-router.type";
+import type { UseParamsReturn } from "./types/use-params.type";
 
 import { useContext } from "react";
 

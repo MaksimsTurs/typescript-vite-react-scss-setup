@@ -1,4 +1,4 @@
-import type { GlobalStorage, GlobalStorageProps } from "../use-global-storage.type";
+import type { GlobalStorage, GlobalStorageProps } from "../types/use-global-storage.type";
 
 import { createContext, ReactNode } from "react";
 
