@@ -8,6 +8,10 @@ import { useContext } from "react";
 export default function Link<P extends string>({ children, ...attributes }: LinkProps<P>): ReactNode {
   const context: ReactRouterContextValue<any> | undefined = useContext(ReactRouterContext);
 
+  if(!context) {
+    throw new Error("Link component should be wrapped into Routes component!");
+  }
+
   const changePath = (event: MouseEvent<HTMLAnchorElement>): void => {
     event.preventDefault();
 

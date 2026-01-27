@@ -10,7 +10,16 @@ import isPathMatchPattern from "./utils/is-path-match-pattern.util";
 
 export default function useParams<P extends string>(): Dictionary<P, string> {
   const context: ReactRouterContextValue<any> | undefined = useContext(ReactRouterContext);
-  const currentPattern: string | undefined = context?.patterns.keys().filter(pattern => isPathMatchPattern(pattern, context.path)).toArray().at(0);
+  
+  if(!context) {
+    throw new Error("You should wrapp you App into Routes component!");
+  }
+
+  const currentPattern: string | undefined = context.patterns
+    .keys()
+    .filter(pattern => isPathMatchPattern(pattern, context.path))
+    .toArray()
+    .at(0);
 
   return getParamsFromPath<P>(currentPattern || "", context!.path)
 };

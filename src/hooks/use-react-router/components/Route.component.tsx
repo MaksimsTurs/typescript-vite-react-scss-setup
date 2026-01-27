@@ -11,11 +11,15 @@ import isPathMatchPattern from "../utils/is-path-match-pattern.util";
 export default function Route<P extends string>({ path, protect, children, fallback }: RouteProps<P>): ReactNode {
   const context: ReactRouterContextValue<P> | undefined = useContext(ReactRouterContext);
   
-  context?.addPattern(path);
+  if(!context) {
+    throw new Error("Route component should be wrapped into Routes component!");
+  }
+  
+  context.addPattern(path);
   
   return(
     isUndefined(protect) ? 
-      isPathMatchPattern(path, context?.path || "") ? 
+      isPathMatchPattern(path, context.path || "") ? 
         children :
       null :
     protect ? 
