@@ -1,5 +1,6 @@
 import type { MouseEvent, ReactNode } from "react";
-import type { LinkProps, ReactRouterContextValue } from "../use-react-router.type";
+import type { ReactRouterContextValue } from "../use-react-router.type";
+import type { LinkProps } from "./Link.type";
 
 import { ReactRouterContext } from "./Routes.component";
 

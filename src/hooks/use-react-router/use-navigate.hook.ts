@@ -1,11 +1,12 @@
 import type { ReactRouterContextValue } from "./use-react-router.type";
+import type { UseNavigateReturn } from "./use-navigate.type";
 
 import { useContext } from "react";
 
 import { ReactRouterContext } from "./components/Routes.component";
 
-export default function useNavigate(): (to: string | -1) => void {
-  const context: ReactRouterContextValue<any> | undefined = useContext(ReactRouterContext);
+export default function useNavigate(): UseNavigateReturn {
+  const context: ReactRouterContextValue<any> | undefined = useContext<ReactRouterContextValue<any> | undefined>(ReactRouterContext);
   
   if(!context) {
     throw new Error("You should wrapp you App into Routes component!");
@@ -19,5 +20,5 @@ export default function useNavigate(): (to: string | -1) => void {
       history.back();
       context.popPath();
     }
-  }
+  };
 };

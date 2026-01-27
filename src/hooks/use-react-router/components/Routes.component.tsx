@@ -1,5 +1,6 @@
-import type { ReactRouterContextValue, RoutesProps } from "../use-react-router.type";
+import type { ReactRouterContextValue } from "../use-react-router.type";
 import type { ReactNode, RefObject } from "react";
+import type { RoutesProps } from "./Routes.type";
 
 import { createContext, useRef, useState } from "react";
 

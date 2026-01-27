@@ -1,5 +1,6 @@
 import type { FunctionComponent } from "react";
-import type { LinkProps, RouteProps } from "./use-react-router.type";
+import type { LinkProps } from "./components/Link.type";
+import type { RouteProps } from "./components/Route.type";
 
 export type InitRouteComponentsReturn<P extends string> = {
   Link:  FunctionComponent<LinkProps<P>>
