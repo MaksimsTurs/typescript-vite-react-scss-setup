@@ -16,7 +16,7 @@ export default function Link<P extends string>({ children, ...attributes }: Link
     event.preventDefault();
 
     history.pushState(null, "", attributes.href);
-    context?.setPath(attributes.href);
+    context.pushPath(attributes.href);
   };
 
   return <a {...attributes} onClick={changePath}>{children}</a>;

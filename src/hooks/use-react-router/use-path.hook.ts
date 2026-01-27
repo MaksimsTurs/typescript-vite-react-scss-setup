@@ -11,5 +11,5 @@ export default function usePath(): string {
     throw new Error("You should wrapp you App into Routes component!");
   }
 
-  return context.path;
+  return context.paths.at(-1);
 };

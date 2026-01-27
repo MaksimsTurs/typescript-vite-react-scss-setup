@@ -6,13 +6,21 @@ import { createContext, useRef, useState } from "react";
 export const ReactRouterContext = createContext<ReactRouterContextValue<any> | undefined>(undefined);
 
 export default function Routes<P extends string>({ children }: RoutesProps): ReactNode {
-  const [path, setPath] = useState<P>(location.pathname as P);
+  const [paths, setPath] = useState<P[]>([location.pathname] as P[]);
   const patterns: RefObject<Set<string>> = useRef<Set<string>>(new Set<string>())
 
   const value: ReactRouterContextValue<P> = { 
     patterns: patterns.current,
-    path,
-    setPath,
+    paths,
+    pushPath: function(path: P): void {
+      setPath(prev => [...prev, path]);
+    },
+    popPath: function(): void {
+      setPath(prev => {
+        prev.pop();
+        return [...prev];
+      });
+    },
     addPattern: function(newPattern: string): void {
       if(!patterns.current.has(newPattern)) {
         patterns.current.add(newPattern);

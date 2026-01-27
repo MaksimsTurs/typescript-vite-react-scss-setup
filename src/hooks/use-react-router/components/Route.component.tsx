@@ -19,7 +19,7 @@ export default function Route<P extends string>({ path, protect, children, fallb
   
   return(
     isUndefined(protect) ? 
-      isPathMatchPattern(path, context.path || "") ? 
+      isPathMatchPattern(path, context.paths.at(-1)) ? 
         children :
       null :
     protect ? 

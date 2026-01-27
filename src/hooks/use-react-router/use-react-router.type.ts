@@ -1,15 +1,18 @@
-import type { Dispatch, PropsWithChildren, ReactNode, SetStateAction, JSX } from "react";
+import type { PropsWithChildren, ReactNode, JSX } from "react";
 
 export type ReactRouterContextValue<P extends string> = {
-  path:    P
-  patterns: Set<string>
-  setPath: ReactRouterContextSetPath<P>
-  addPattern: (newPattern: string) => void;
+  paths:      P[]
+  patterns:   Set<string>
+  pushPath:   ReactRouterPushPath<P>
+  popPath:    ReactRouterPopPath
+  addPattern: ReactRouterAddPathPattern;
 };
 
-export type AddPattern = (pattern: string) => void;
+type ReactRouterAddPathPattern = (pattern: string) => void;
 
-export type ReactRouterContextSetPath<P extends string> = Dispatch<SetStateAction<P>>;
+type ReactRouterPushPath<P extends string> = (path: P) => void;
+
+type ReactRouterPopPath = () => void;
 
 export type RoutesProps = PropsWithChildren;
 

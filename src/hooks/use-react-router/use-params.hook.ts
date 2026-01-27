@@ -17,9 +17,9 @@ export default function useParams<P extends string>(): Dictionary<P, string> {
 
   const currentPattern: string | undefined = context.patterns
     .keys()
-    .filter(pattern => isPathMatchPattern(pattern, context.path))
+    .filter(pattern => isPathMatchPattern(pattern, context.paths.at(-1)))
     .toArray()
     .at(0);
 
-  return getParamsFromPath<P>(currentPattern || "", context!.path)
+  return getParamsFromPath<P>(currentPattern || "", context.paths.at(-1))
 };

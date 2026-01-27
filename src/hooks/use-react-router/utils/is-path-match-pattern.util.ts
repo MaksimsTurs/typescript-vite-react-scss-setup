@@ -1,6 +1,10 @@
-export default function isPathMatchPattern(pattern: string, path: string): boolean {
+export default function isPathMatchPattern(pattern: string, path?: string): boolean {
   if(!/\:/g.test(pattern)) {
     return pattern === path;
+  }
+
+  if(!path) {
+    return false;
   }
 
   const patternParts: string[] = pattern.split("/");

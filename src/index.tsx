@@ -4,22 +4,26 @@ import { createRoot } from "react-dom/client";
 
 import ErrorBoundary from "./components/Error-Boundary/Error-Boundary.component";
 
-import { Routes, initRouteComponents, usePath } from "./hooks/use-react-router/use-react-router.hook";
+import { Routes, initRouteComponents, useNavigate } from "./hooks/use-react-router/use-react-router.hook";
 
 const { Route } = initRouteComponents();
 
 function App(): ReactNode {
   return(
     <ErrorBoundary>
-      <Routes>
         {(() => {
-          const paths = usePath()
-          console.log(paths)
+          const navigate = useNavigate();
           return(
-            <Route path="/"/>
+            <>
+              <Route path="/" children={
+                <button onClick={() => navigate("/home")}>Go /home</button>
+              }/>
+              <Route path="/home" children={
+                <button onClick={() => navigate("/")}>Go /</button>
+              }/>
+            </>
           )
         })()}
-      </Routes>
       {/* children */}
     </ErrorBoundary>
   );
