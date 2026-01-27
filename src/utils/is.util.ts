@@ -10,4 +10,13 @@ export const isObject     = <T = any>(something: any): something is T => typeof 
 export const isFunction   = <T = VoidFunction>(something: any): something is T => typeof something === "function";
 export const isBigNumber  = (something: any): something is bigint => typeof something === "bigint";
 export const isSymbol     = (something: any): something is symbol => typeof something === "symbol";
-export const isInstanceOf = (maybeInstance: any, Constructor: Constructable): boolean => maybeInstance instanceof Constructor; 
+export const isInstanceOf = (maybeInstance: any, Constructor: Constructable): boolean => maybeInstance instanceof Constructor;
+export const isPrimitive  = (something: any): boolean => (
+  isString(something)    ||
+  isNumber(something)    ||
+  isNull(something)      ||
+  isUndefined(something) ||
+  isBoolean(something)   ||
+  isBigNumber(something) ||
+  isSymbol(something)    
+);
