@@ -21,7 +21,7 @@ export default function set(key: string, value: string, options?: CookieSetOptio
 
 	if(options?.maxAge) {
 		if(!isNumber(options.maxAge)) {
-			throw new TypeError(`[Cookie]: options.maxAge is not of type \"number\" but type of "${options.maxAge}"`);
+			throw new TypeError(`[Cookie]: options.maxAge is not of type \"number\" but type of "${typeof options.maxAge}"!`);
 		}
 
 		optionString += `max-age=${options.maxAge}`;

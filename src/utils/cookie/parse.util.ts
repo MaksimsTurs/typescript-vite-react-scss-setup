@@ -16,7 +16,9 @@ export default function parse(): ParsedCookie {
 		const formatedString: string = cookieStrings[index].trim();
 		const { 0: key, 1: value } = formatedString.split(G_COOKIE_REGEXP_ITEM_SPLITTER);
 
-		cookies[key] = value;
+		if(key && value) {
+			cookies[key] = value;
+		}
 
 		index++;
 	}
