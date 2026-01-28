@@ -1,5 +1,6 @@
 import type { UseStorageReturn, UseStorageSelector } from "./types/use-storage.type";
-import type { StorageAction, StorageActionMetadata, StorageAsyncAction, StorageUnsubscribe } from "./types/create-storage.type";
+import type { CreateStorageReturn, StorageAction, StorageActionMetadata, StorageAsyncAction, StorageUnsubscribe } from "./types/create-storage.type";
+import type { ReactStorageContext } from "./types/React-Storage-Provider.type";
 
 import { ReactStorage } from "./components/React-Storage-Provider.component";
 
@@ -9,9 +10,9 @@ import createAsyncAction from "./create-async-action";
 import createStorage from "./create-storage";
 
 function useStorage<S = unknown>(selector: UseStorageSelector): UseStorageReturn<S> {
-  const context = useContext(ReactStorage);
-  const storage = selector(context);
-  const [data, dispatcher] = useState(storage.get());
+  const context: ReactStorageContext = useContext<ReactStorageContext>(ReactStorage);
+  const storage: CreateStorageReturn = selector(context);
+  const [data, dispatcher] = useState<S>(storage.get());
 
   useEffect(() => {
     const unsubscribe: StorageUnsubscribe = storage.subscribe(dispatcher);
