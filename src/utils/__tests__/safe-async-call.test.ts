@@ -3,9 +3,8 @@ import { expect, test } from "vitest";
 import safeAsyncCall from "../safe-async-call/safe-async-call.util";
 
 test("Safe async call, return value.", async function() {
-  const res = await safeAsyncCall(async () => 5);
-
-  expect(res).toStrictEqual([5, null]);
+  expect(await safeAsyncCall(async () => 5))
+    .toStrictEqual([5, null]);
 });
 
 test("Safe async call, error.", async function() {
