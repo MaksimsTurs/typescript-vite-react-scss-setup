@@ -5,22 +5,22 @@ import formatInit from "../fetcher/utils/format-init.util";
 import getDataFromResponse from "../fetcher/utils/get-data-from-response.util";
 
 test("Format url with undefined base url.", function() {
-  expect(formatUrl(undefined, "http://localhost:400/v1/api")).eq("http://localhost:400/v1/api");
+  expect(formatUrl(undefined, "http://localhost:400/v1/api")).toEqual("http://localhost:400/v1/api");
 });
 
 test("Format url with base url.", function() {
-  expect(formatUrl("http://localhost:400/v1", "/api")).eq("http://localhost:400/v1/api");
+  expect(formatUrl("http://localhost:400/v1", "/api")).toEqual("http://localhost:400/v1/api");
 });
 
 test("Format fetcher options, body and headers are undefined.", function() {
   expect(formatInit(undefined, undefined))
     .toStrictEqual({ 
-      headers: { "Content-Type": "application/json" }, 
-      body:    "{}"
+      headers: {}, 
+      body:    undefined
     });
 });
 
-test("Format fetcher options, body (object) and headers are defined.", function() {
+test("Format fetcher options, body and headers are objects.", function() {
   expect(formatInit({ name: "Musterman", age: 20 }, { Authentification: "Bearer token" }))
     .toStrictEqual({ 
       headers: { "Content-Type": "application/json", Authentification: "Bearer token" }, 
@@ -28,7 +28,21 @@ test("Format fetcher options, body (object) and headers are defined.", function(
     });
 });
 
-test("Format fetcher options, body (form data) and headers are defined.", function() {
+test("Format fetcher options, body is number and headers are undefined.", function() {
+  expect(formatInit(250, undefined))
+    .toStrictEqual({ 
+      headers: {}, 
+      body:    250
+    });
+});
+
+test("Format fetcher options, headers are not valid.", function() {
+  //@ts-ignore
+  expect(() => formatInit(250, "some text"))
+    .toThrow(`[Fetcher]: Headers is not of type "object" but type of "string"!`);
+});
+
+test("Format fetcher options, body is form data.", function() {
   const formData: FormData = new FormData();
 
   formData.append("name", "Musterman");
@@ -45,7 +59,7 @@ test("Get text data from response.", async function() {
 
   const response: Response = new Response("Some text", { headers });
 
-  expect(await getDataFromResponse(response)).eq("Some text");
+  expect(await getDataFromResponse<any>(response)).toEqual("Some text");
 });
 
 test("Get json data from response.", async function() {
@@ -55,7 +69,7 @@ test("Get json data from response.", async function() {
 
   const response: Response = new Response("{\"name\":\"Musterman\",\"age\":20}", { headers });
 
-  expect(await getDataFromResponse(response))
+  expect(await getDataFromResponse<any>(response))
     .toStrictEqual({
       name: "Musterman",
       age:  20

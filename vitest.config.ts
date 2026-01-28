@@ -1,4 +1,5 @@
 import { defineConfig } from "vitest/config"
+import resolve from "./vite/utils/resolve.util";
 
 export default defineConfig(() => {
   return {
@@ -14,7 +15,23 @@ export default defineConfig(() => {
         "**/output/**", 
         "**/.{idea,git,cache,output,temp}/**", 
         "**/{vite,vitest}.config.*"
-      ]
+      ],
+      alias: {
+        "@root":      resolve("src/"),
+
+        "@public":    resolve("src/public"),
+        
+        "@feature":   resolve("src/features"),
+        "@reducer":   resolve("src/reducers"),
+        "@util":      resolve("src/utils"),
+        "@hook":      resolve("src/hooks"),
+        
+        "@component": resolve("src/components"),
+        "@ui":        resolve("src/ui"),
+        "@page":      resolve("src/pages"),
+        
+        "@scss":      resolve("src/scss"),
+      }
     },
   };
 });

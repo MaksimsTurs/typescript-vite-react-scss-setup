@@ -1,10 +1,15 @@
 import { FetcherHeaders, FormatedInit } from "../fetcher.type";
 
-export default function formatInit(body?: any, headers?: FetcherHeaders): FormatedInit {
-	headers = headers ? headers : {};
-	body    = body ? body : {};
+import { isObject, isInstanceOf, isPrimitive } from "@util/is.util";
 
-	if((body && headers) && !(body instanceof FormData)) {
+export default function formatInit(body?: any, headers?: FetcherHeaders): FormatedInit {
+	if(headers && !isObject(headers)) {
+		throw new TypeError(`[Fetcher]: Headers is not of type "object" but type of "${typeof headers}"!`);
+	}	
+
+	headers = headers ? headers : {};
+
+	if(body && !isInstanceOf(body, FormData) && !isPrimitive(body)) {
 		headers["Content-Type"] = "application/json";
 		body = JSON.stringify(body);
 	}
