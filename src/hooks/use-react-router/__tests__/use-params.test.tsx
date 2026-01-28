@@ -7,46 +7,70 @@ import { ReactRouterContext } from "../components/Routes.component";
 
 import useParams from "../use-params.hook";
 
-test("test use params", function() {
-  {
-    const { result } = renderHook(() => useParams(), { wrapper: ({ children }: PropsWithChildren) => (
-        <ReactRouterContext value={
-          {
-            paths: ["/", "/250"],
-            patterns: new Set<string>(["/", "/:id"]),
-            pushPath: function(_: any): void {},
-            popPath: function(): void {},
-            addPattern: function(_: string): void {},
-          }
-        }>
-          {children}
-        </ReactRouterContext>
-      )
-    });
-  
-    expect(result.current).toStrictEqual({ id: "250" });
-  }
+test("Test the useParams hook, with paths that have valid params.", function() {
+  const { result } = renderHook(() => useParams(), { wrapper: ({ children }: PropsWithChildren) => (
+      <ReactRouterContext value={
+        {
+          paths: ["/", "/user/3fb433fk/article/4ff3n40f"],
+          patterns: new Set<string>(["/", "/user/:userId/article/:articleId"]),
+          pushPath: function(_: any): void {},
+          popPath: function(): void {},
+          addPattern: function(_: string): void {},
+        }
+      }>
+        {children}
+      </ReactRouterContext>
+    )
+  });
 
-  {
-    const { result } = renderHook(() => useParams(), { wrapper: ({ children }: PropsWithChildren) => (
-        <ReactRouterContext value={
-          {
-            paths: ["/"],
-            patterns: new Set<string>(["/", "/home"]),
-            pushPath: function(_: any): void {},
-            popPath: function(): void {},
-            addPattern: function(_: string): void {},
-          }
-        }>
-          {children}
-        </ReactRouterContext>
-      )
+  expect(result.current)
+    .toStrictEqual({
+      userId:    "3fb433fk",
+      articleId: "4ff3n40f"
     });
-  
-    expect(result.current).toStrictEqual({});
-  }
+});
 
-  {
-    expect(() => renderHook(() => useParams())).toThrow("You should wrapp you App into Routes component!");
-  }
+test("Test the useParams hook, with paths that have no params.", function() {
+  const { result } = renderHook(() => useParams(), { wrapper: ({ children }: PropsWithChildren) => (
+      <ReactRouterContext value={
+        {
+          paths: ["/", "/home"],
+          patterns: new Set<string>(["/", "/home"]),
+          pushPath: function(_: any): void {},
+          popPath: function(): void {},
+          addPattern: function(_: string): void {},
+        }
+      }>
+        {children}
+      </ReactRouterContext>
+    )
+  });
+
+  expect(result.current)
+    .toStrictEqual({});
+});
+
+test("Test the useParams hook, wit invalid params.", function() {
+  const { result } = renderHook(() => useParams(), { wrapper: ({ children }: PropsWithChildren) => (
+      <ReactRouterContext value={
+        {
+          paths: ["/", "/49295/home"],
+          patterns: new Set<string>(["/", "/home/:id"]),
+          pushPath: function(_: any): void {},
+          popPath: function(): void {},
+          addPattern: function(_: string): void {},
+        }
+      }>
+        {children}
+      </ReactRouterContext>
+    )
+  });
+
+  expect(result.current)
+    .toStrictEqual({});
+});
+
+test("Test the useParams hook that was called outside the contexts.", function() {
+  expect(() => renderHook(() => useParams()))
+    .toThrow("[useParams]: You should wrapp you App into Routes component!");
 });

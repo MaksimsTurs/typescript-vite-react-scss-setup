@@ -12,7 +12,7 @@ export default function useParams<P extends string>(): UseParamsReturn<P> {
   const context: ReactRouterContextValue<any> | undefined = useContext<ReactRouterContextValue<any> | undefined>(ReactRouterContext);
   
   if(!context) {
-    throw new Error("You should wrapp you App into Routes component!");
+    throw new TypeError("[useParams]: You should wrapp you App into Routes component!");
   }
 
   const currentPattern: string | undefined = context.patterns
@@ -21,5 +21,5 @@ export default function useParams<P extends string>(): UseParamsReturn<P> {
     .toArray()
     .at(0);
 
-  return getParamsFromPath<P>(currentPattern || "", context.paths.at(-1))
+  return !currentPattern ? {} : getParamsFromPath<P>(currentPattern, context.paths.at(-1))
 };

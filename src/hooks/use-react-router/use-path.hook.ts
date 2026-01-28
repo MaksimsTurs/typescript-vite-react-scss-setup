@@ -9,7 +9,7 @@ export default function usePath(): UsePathReturn {
   const context: ReactRouterContextValue<any> | undefined = useContext<ReactRouterContextValue<any> | undefined>(ReactRouterContext);
 
   if(!context) {
-    throw new Error("You should wrapp you App into Routes component!");
+    throw new TypeError("[usePath]: You should wrapp you App into Routes component!");
   }
 
   return context.paths.at(-1);
