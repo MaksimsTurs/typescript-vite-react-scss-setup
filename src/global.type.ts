@@ -8,4 +8,4 @@ export type KeyOf<T = any> = keyof T;
 
 export type VoidFunction = () => void;
 
-export type Constructable = Function
+export type Constructable = Function;

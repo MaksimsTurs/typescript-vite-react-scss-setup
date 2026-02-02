@@ -87,6 +87,8 @@ export default function(): BuildEnvironmentOptions {
 
 					if(isHasAssetExtension("css", name)) {
 						return `assets/css/${name}`;
+					} else if(isHasAssetExtension("woff2", name)) {
+						return `assets/fonts/${name}`;
 					}
 					
 					return name;		

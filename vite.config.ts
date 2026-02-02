@@ -7,7 +7,6 @@ import { defineConfig as viteConfig } from "vite";
 import vite from "./vite/vite";
 import resolve from "./vite/utils/resolve.util";
 
-
 const DEV_PLUGINS: (Plugin<any> | Plugin<any>[])[] = [
 	vite.plugins.webFont([]),
 	vite.plugins.reactSwc(),
