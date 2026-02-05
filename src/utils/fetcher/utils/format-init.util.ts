@@ -1,4 +1,4 @@
-import { FetcherHeaders, FormatedInit } from "../fetcher.type";
+import { FetcherHeaders, FormatedInit } from "../types/fetcher.type";
 
 import { isObject, isInstanceOf, isPrimitive } from "@util/is.util";
 

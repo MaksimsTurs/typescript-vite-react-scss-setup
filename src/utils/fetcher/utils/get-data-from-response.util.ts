@@ -1,7 +1,7 @@
 import { 
 	G_FETCHER_REGEXP_JSON_CONTENT, 
 	G_FETCHER_REGEXP_TEXT_CONTENT 
-} from "../REGEXP.const";
+} from "../const/REGEXP.const";
 
 export default async function getDataFromResponse<R = any>(response: Response): Promise<R> {
 	const contentType: string | null = response.headers.get("Content-Type");

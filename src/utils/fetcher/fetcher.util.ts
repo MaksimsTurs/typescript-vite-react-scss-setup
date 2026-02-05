@@ -1,4 +1,4 @@
-import type { Fethcer, FormatedInit, FetcherOptions } from "./fetcher.type";
+import type { Fethcer, FormatedInit, FetcherOptions } from "./types/fetcher.type";
 
 import formatUrl from "./utils/format-url.util";
 import formatInit from "./utils/format-init.util";
