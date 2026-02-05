@@ -1,3 +1,5 @@
+import "@scss/root.scss";
+
 import type { ReactNode } from "react";
 
 import { createRoot } from "react-dom/client";
