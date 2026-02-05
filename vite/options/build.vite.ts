@@ -1,7 +1,7 @@
 import type { BuildEnvironmentOptions, TerserOptions } from "vite"
 
 import resolve from "../utils/resolve.util";
-import isHasAssetExtension from "../utils/is-has-asset-extension.util";
+import hasExtension from "../utils/has-extension.util";
 
 import os from "node:os";
 
@@ -85,9 +85,9 @@ export default function(): BuildEnvironmentOptions {
 				assetFileNames(chunkInfo) {
 					const name: string = chunkInfo.names.at(0)!;
 
-					if(isHasAssetExtension("css", name)) {
+					if(hasExtension("css", name)) {
 						return `assets/css/${name}`;
-					} else if(isHasAssetExtension("woff2", name)) {
+					} else if(hasExtension("woff2", name)) {
 						return `assets/fonts/${name}`;
 					}
 					
