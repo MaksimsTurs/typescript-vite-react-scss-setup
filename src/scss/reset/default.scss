@@ -36,12 +36,12 @@ main {
 a {
 	text-decoration: none;
 	display: block;
-	color: black;
+	color: #000000;
 
 	&:hover,
 	&:visited {
 		text-decoration: none;
-		color: black;
+		color: #000000;
 	}
 }
 
