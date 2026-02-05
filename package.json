@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
-    "build:test": "npm run test && npm run build",
+    "test:build": "npm run test && npm run build",
     "build:preview": "npm run build && npm run preview",
-    "build:test:preview": "npm run test && npm run build && npm run preview",
+    "test:build:preview": "npm run test && npm run build && npm run preview",
     "test": "vitest run",
     "dev": "vite",
     "preview": "vite preview"
