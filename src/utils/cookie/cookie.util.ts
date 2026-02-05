@@ -1,8 +1,8 @@
-import type { CookieHelper } from "./cookie.type";
+import type { CookieHelper } from "./types/cookie.type";
 
-import get from "./get.util";
-import set from "./set.util";
-import remove from "./remove.util";
+import get from "./utils/get.util";
+import set from "./utils/set.util";
+import remove from "./utils/remove.util";
 
 const cookie: CookieHelper = {
 	MAX_AGE: [

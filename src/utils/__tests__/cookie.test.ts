@@ -1,9 +1,9 @@
-import type { CookieSetOptions } from "../cookie/cookie.type";
+import type { CookieSetOptions } from "../cookie/types/cookie.type";
 
 import { expect, test, vi } from "vitest";
 
 import cookie from "../cookie/cookie.util";
-import parse from "../cookie/parse.util";
+import parse from "../cookie/utils/parse.util";
 
 const DOM_COOKIE_NAME_VALUE  = "Musterman";
 const DOM_COOKIE_TOKEN_VALUE = "c34nc3ncnücn1ünrk-cwo´$))$§oejf4";

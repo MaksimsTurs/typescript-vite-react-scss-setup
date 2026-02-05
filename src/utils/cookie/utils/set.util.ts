@@ -1,8 +1,8 @@
-import type { CookieSetOptions } from "./cookie.type";
+import type { CookieSetOptions } from "../types/cookie.type";
 
-import { G_COOKIE_REGEXP_TEXT_VALIDATION } from "./REGEXP.const";
+import { G_COOKIE_REGEXP_TEXT_VALIDATION } from "../const/REGEXP.const";
 
-import { isNumber } from "../is.util";
+import { isNumber } from "../../is.util";
 
 export default function set(key: string, value: string, options?: CookieSetOptions): void {
 	let optionString: string = "";

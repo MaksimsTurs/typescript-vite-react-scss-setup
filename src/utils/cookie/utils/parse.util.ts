@@ -1,9 +1,9 @@
-import type { ParsedCookie } from "./cookie.type.ts";
+import type { ParsedCookie } from "../types/cookie.type.ts";
 
 import {
 	G_COOKIE_REGEXP_ITEMS_SPLITTER,
 	G_COOKIE_REGEXP_ITEM_SPLITTER
-} from "./REGEXP.const.ts";
+} from "../const/REGEXP.const.ts";
 
 export default function parse(): ParsedCookie {
 	const cookies: ParsedCookie = {};
