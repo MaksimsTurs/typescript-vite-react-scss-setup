@@ -1,4 +1,4 @@
-export type SafeAsyncCallReturnData<R = unknown, E = unknown> = [R | null, Error | E | null];
+export type SafeAsyncCallReturnData<R = unknown, E = unknown> = [R | null, E | null];
 
 export type SafeAsyncCallCallback<R = unknown> = (...args: any[]) => Promise<R>;
 

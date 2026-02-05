@@ -1,4 +1,4 @@
-export type SafeSyncCallReturnData<R = unknown, E = unknown> = [R | null, Error | E | null];
+export type SafeSyncCallReturnData<R = unknown, E = unknown> = [R | null, E | null];
 
 export type SafeSyncCallCallback<R = unknown> = (...args: any[]) => R;
 

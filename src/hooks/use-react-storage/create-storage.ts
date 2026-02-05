@@ -30,7 +30,7 @@ export default function createStorage<
 			const index: number = subscribers.push(subscriber) - 1;
 
 			return (): void => {
-				subscribers.splice(index);
+				subscribers.splice(index, 1);
 			};
 		},
 		set: function(newState: StorageSetParam): void {
@@ -44,7 +44,7 @@ export default function createStorage<
 			}
 			this.notify();
 		},
-		get: function() {
+		get: function(): S {
 			return state;
 		},
 	};
