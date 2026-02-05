@@ -4,7 +4,7 @@ export default async function safeAsyncCall<R = unknown, E = unknown>(callback: 
 	try {
 		return [await callback(...args), null];
 	} catch(error) {
-		const maybeSerialized: E | Error = (options?.serializeError ? options.serializeError(error) : error) as E | Error;
+		const maybeSerialized: E = (options?.serializeError ? options.serializeError(error) : error) as E;
 
 		return [null, maybeSerialized];
 	}

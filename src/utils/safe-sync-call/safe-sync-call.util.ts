@@ -4,7 +4,7 @@ export default function safeSyncCall<R = unknown, E = unknown>(callback: SafeSyn
 	try {
 		return [callback(...args), null];
 	} catch(error) {
-		const maybeSerialized: E | Error = (options?.serializeError ? options.serializeError(error) : error) as E | Error;
+		const maybeSerialized: E = (options?.serializeError ? options.serializeError(error) : error) as E;
 
 		return [null, maybeSerialized];
 	}

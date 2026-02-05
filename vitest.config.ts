@@ -1,4 +1,5 @@
-import { defineConfig } from "vitest/config"
+import { defineConfig } from "vitest/config";
+
 import resolve from "./vite/utils/resolve.util";
 
 export default defineConfig(() => {
