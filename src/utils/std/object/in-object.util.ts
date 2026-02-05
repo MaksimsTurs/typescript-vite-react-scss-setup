@@ -1,4 +1,6 @@
-export default function inObject<O>(keys?: (keyof O)[] | null, object?: any | null): boolean {
+import type { KeyOf } from "@root/global.type";
+
+export default function inObject<O = unknown>(keys?: KeyOf<O>[] | null, object?: any | null): boolean {
 	if(!object || !keys) {
 		return false;
 	}
