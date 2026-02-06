@@ -2,10 +2,13 @@ import type { Dictionary } from "@root/global.type";
 
 import PathNotMatchPatternError from "./Path-Not-Match-Pattern-Error.util";
 
+import { isUndefined } from "@util/is.util";
+import hasDynamicPart from "./has-dynamic-part.util";
+
 export default function getParamsFromPath<P extends string>(pattern?: string, path?: string): Dictionary<P, string> {
   const params: Dictionary<P, string> = {};
 
-  if(!path || !pattern) {
+  if(isUndefined(pattern) || isUndefined(path)) {
     return params;
   }
 
@@ -17,10 +20,11 @@ export default function getParamsFromPath<P extends string>(pattern?: string, pa
   }
 
   for(let index: number = 0; index < patternParts.length; index++) {
-    if(/\:/.test(patternParts[index])) {
-      const name: P = patternParts[index].replace(/\:/, "").trim() as P;
-
-      params[name] = pathParts[index];
+    if(hasDynamicPart(patternParts[index])) {
+      const key: P = patternParts[index].replace(/\:/, "").trim() as P;
+      params[key] = pathParts[index];
+    } else if(patternParts[index] !== pathParts[index]) {
+      throw new PathNotMatchPatternError(pattern, path);
     }
   }
   
