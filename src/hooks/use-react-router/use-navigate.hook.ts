@@ -1,5 +1,5 @@
 import type { ReactRouterContextValue } from "./types/use-react-router.type";
-import type { UseNavigateReturn } from "./types/use-navigate.type";
+import type { NavigateBack, UseNavigateReturn } from "./types/use-navigate.type";
 
 import { useContext } from "react";
 
@@ -12,7 +12,7 @@ export default function useNavigate(): UseNavigateReturn {
     throw new Error("You should wrap your App into Routes component!");
   }
 
-  return function(to: string | -1): void {
+  return function(to: string | NavigateBack): void {
     if(typeof to === "string") {
       history.pushState(null, "", to);
       context.pushPath(to);
