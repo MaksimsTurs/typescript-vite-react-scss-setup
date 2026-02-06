@@ -17,11 +17,12 @@ export default function useParams<P extends string>(): UseParamsReturn<P> {
     throw new ExecutionOutsideContext();
   }
 
+  const currentPath: string | undefined = context.paths.at(-1);
   const currentPattern: string | undefined = context.patterns
     .keys()
-    .filter(pattern => isPathMatchPattern(pattern, context.paths.at(-1)))
+    .filter(pattern => isPathMatchPattern(pattern, currentPath))
     .toArray()
     .at(0);
 
-  return !currentPattern ? {} : getParamsFromPath<P>(currentPattern, context.paths.at(-1))
+  return getParamsFromPath<P>(currentPattern, currentPath)
 };
