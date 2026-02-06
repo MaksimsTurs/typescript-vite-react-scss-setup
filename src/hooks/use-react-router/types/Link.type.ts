@@ -1,5 +1,5 @@
 import type { JSX, PropsWithChildren } from "react"
 
-export type LinkProps<P extends string> = PropsWithChildren<{
+export type LinkProps<P extends string> = Omit<PropsWithChildren<{
   href: P
-} & JSX.IntrinsicElements["a"]>
+} & JSX.IntrinsicElements["a"]>, "onClick">
