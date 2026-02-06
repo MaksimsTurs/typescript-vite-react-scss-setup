@@ -10,7 +10,7 @@ import { isUndefined } from "@util/is.util";
 import isPathMatchPattern from "../utils/is-path-match-pattern.util";
 
 export default function Route<P extends string>({ path, protect, children, fallback }: RouteProps<P>): ReactNode {
-  const context: ReactRouterContextValue<P> | undefined = useContext(ReactRouterContext);
+  const context: ReactRouterContextValue<P> | undefined = useContext<ReactRouterContextValue<P> | undefined>(ReactRouterContext);
   
   if(!context) {
     throw new Error("Route component should be wrapped into Routes component!");
@@ -23,7 +23,7 @@ export default function Route<P extends string>({ path, protect, children, fallb
       isPathMatchPattern(path, context.paths.at(-1)) ? 
         children :
       null :
-    protect ? 
+    protect && isPathMatchPattern(path, context.paths.at(-1)) ? 
       fallback : 
       children
   );

@@ -1,15 +1,20 @@
-export default function isPathMatchPattern(pattern: string, path?: string): boolean {
-  if(!/\:/g.test(pattern)) {
-    return pattern === path;
-  }
+import hasDynamicPart from "./has-dynamic-part.util";
 
+export default function isPathMatchPattern(pattern: string, path?: string): boolean {
   if(!path) {
     return false;
   }
 
-  const patternParts: string[] = pattern.split("/");
-  const pathParts: string[] = path.split("/");
+  // If pattern does not have dynamic parts, we can do simple string comparison.
+  if(!hasDynamicPart(pattern)) {
+    return pattern === path;
+  }
 
+  const patternParts: string[] = pattern.split("/").filter(Boolean);
+  const pathParts: string[] = path.split("/").filter(Boolean);
+
+  // If pattern and path have different count of parts, path does not match 
+  // the pattern.
   if(patternParts.length != pathParts.length) {
     return false;
   }
@@ -18,7 +23,7 @@ export default function isPathMatchPattern(pattern: string, path?: string): bool
   let staticPartsCount: number = 0;
 
   for(let index: number = 0; index < patternParts.length; index++) {
-    if(/\:/.test(patternParts[index])) {
+    if(hasDynamicPart(patternParts[index])) {
       dynamicPartsCount++;
     } else {
       if(patternParts[index] !== pathParts[index]) {

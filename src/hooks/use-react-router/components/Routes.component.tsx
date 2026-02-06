@@ -1,10 +1,10 @@
 import type { ReactRouterContextValue } from "../types/use-react-router.type";
-import type { ReactNode, RefObject } from "react";
+import type { Context, ReactNode, RefObject } from "react";
 import type { RoutesProps } from "../types/Routes.type";
 
 import { createContext, useMemo, useRef, useState } from "react";
 
-export const ReactRouterContext = createContext<ReactRouterContextValue<any> | undefined>(undefined);
+export const ReactRouterContext: Context<ReactRouterContextValue<any> | undefined> = createContext<ReactRouterContextValue<any> | undefined>(undefined);
 
 export default function Routes<P extends string>({ children }: RoutesProps): ReactNode {
   const [paths, setPath] = useState<P[]>([location.pathname] as P[]);
