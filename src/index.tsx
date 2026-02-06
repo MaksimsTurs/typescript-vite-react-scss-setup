@@ -14,12 +14,13 @@ function App(): ReactNode {
       {/*  children */}
     </Routes>
   )
-}
+};
 
-createRoot(document.body).render(
-  <ErrorBoundary>
-    <ReactStorageProvider storages={{}}>
-      <App/>
-    </ReactStorageProvider>
-  </ErrorBoundary>
-);  
+createRoot(document.body)
+  .render(
+    <ErrorBoundary>
+      <ReactStorageProvider storages={{}}>
+        <App/>
+      </ReactStorageProvider>
+    </ErrorBoundary>
+  );  
