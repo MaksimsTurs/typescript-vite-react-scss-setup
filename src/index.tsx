@@ -10,18 +10,16 @@ import { ReactStorageProvider } from "./hooks/use-react-storage/use-storage.hook
 
 function App(): ReactNode {
   return(
-    <ErrorBoundary>
-      {/* children */}
-    </ErrorBoundary>
-  );
-};
+    <Routes>
+      {/*  children */}
+    </Routes>
+  )
+}
 
 createRoot(document.body).render(
-  <ReactStorageProvider storages={{}}>
-    <Routes>
-      <ErrorBoundary>
-        <App/>
-      </ErrorBoundary>
-    </Routes>
-  </ReactStorageProvider>
+  <ErrorBoundary>
+    <ReactStorageProvider storages={{}}>
+      <App/>
+    </ReactStorageProvider>
+  </ErrorBoundary>
 );  
