@@ -5,11 +5,13 @@ import { useContext } from "react";
 
 import { ReactRouterContext } from "./components/Routes.component";
 
+import ExecutionOutsideContext from "./utils/Error-Outside-Context.util";
+
 export default function useNavigate(): UseNavigateReturn {
   const context: ReactRouterContextValue<any> | undefined = useContext<ReactRouterContextValue<any> | undefined>(ReactRouterContext);
   
   if(!context) {
-    throw new Error("You should wrap your App into Routes component!");
+    throw new ExecutionOutsideContext();
   }
 
   return function(to: string | NavigateBack): void {
