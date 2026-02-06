@@ -6,7 +6,7 @@ import { ReactRouterContext } from "./Routes.component";
 
 import { useContext } from "react";
 
-import ExecutionOutsideContext from "../utils/Error-Outside-Context.util";
+import ExecutionOutsideContext from "../utils/Execution-Outside-Context-Error.util";
 
 export default function Link<P extends string>({ children, ...attributes }: LinkProps<P>): ReactNode {
   const context: ReactRouterContextValue<any> | undefined = useContext(ReactRouterContext);

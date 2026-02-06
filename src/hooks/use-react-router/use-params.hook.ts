@@ -8,13 +8,13 @@ import { ReactRouterContext } from "./components/Routes.component";
 import getParamsFromPath from "./utils/get-params-from-path.util";
 import isPathMatchPattern from "./utils/is-path-match-pattern.util";
 
-import ExecutionOutsideContext from "./utils/Error-Outside-Context.util";
+import ExecutionOutsideContextError from "./utils/Execution-Outside-Context-Error.util";
 
 export default function useParams<P extends string>(): UseParamsReturn<P> {
   const context: ReactRouterContextValue<any> | undefined = useContext<ReactRouterContextValue<any> | undefined>(ReactRouterContext);
   
   if(!context) {
-    throw new ExecutionOutsideContext();
+    throw new ExecutionOutsideContextError();
   }
 
   const currentPath: string | undefined = context.paths.at(-1);

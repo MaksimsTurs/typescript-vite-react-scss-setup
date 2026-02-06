@@ -7,6 +7,8 @@ import { ReactRouterContext } from "../components/Routes.component";
 
 import useParams from "../use-params.hook";
 
+import ExecutionOutsideContext from "../utils/Execution-Outside-Context-Error.util";
+
 test("Test the useParams hook, with paths that have valid params.", function() {
   const { result } = renderHook(() => useParams(), { wrapper: ({ children }: PropsWithChildren) => (
       <ReactRouterContext value={
@@ -72,5 +74,5 @@ test("Test the useParams hook, wit invalid params.", function() {
 
 test("Test the useParams hook that was called outside the contexts.", function() {
   expect(() => renderHook(() => useParams()))
-    .toThrow("[useParams]: You should wrapp you App into Routes component!");
+    .toThrow(ExecutionOutsideContext);
 });

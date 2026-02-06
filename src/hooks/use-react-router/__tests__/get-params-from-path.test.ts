@@ -2,6 +2,8 @@ import { test, expect } from "vitest";
 
 import getParamsFromPath from "../utils/get-params-from-path.util";
 
+import PathNotMatchPatternError from "../utils/Path-Not-Match-Pattern-Error.util";
+
 test("Create a object of params from valid URL path.", function() {
   expect(getParamsFromPath("/path", "/path"))
     .toStrictEqual({});
@@ -17,5 +19,5 @@ test("Create a object of params from valid URL path.", function() {
 
 test("Create a object of params from invalid URL path", function() {
   expect(() => getParamsFromPath("/path/:articleId", "/path/120/110"))
-    .toThrow(`Path pattern "/path/:articleId" does not match path "/path/120/110"!`);
+    .toThrow(PathNotMatchPatternError);
 });

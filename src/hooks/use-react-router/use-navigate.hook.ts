@@ -5,13 +5,13 @@ import { useContext } from "react";
 
 import { ReactRouterContext } from "./components/Routes.component";
 
-import ExecutionOutsideContext from "./utils/Error-Outside-Context.util";
+import ExecutionOutsideContextError from "./utils/Execution-Outside-Context-Error.util";
 
 export default function useNavigate(): UseNavigateReturn {
   const context: ReactRouterContextValue<any> | undefined = useContext<ReactRouterContextValue<any> | undefined>(ReactRouterContext);
   
   if(!context) {
-    throw new ExecutionOutsideContext();
+    throw new ExecutionOutsideContextError();
   }
 
   return function(to: string | NavigateBack): void {

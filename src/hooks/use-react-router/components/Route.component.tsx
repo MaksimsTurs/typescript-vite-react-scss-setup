@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { isUndefined } from "@util/is.util";
 import isPathMatchPattern from "../utils/is-path-match-pattern.util";
 
-import ExecutionOutsideContext from "../utils/Error-Outside-Context.util";
+import ExecutionOutsideContext from "../utils/Execution-Outside-Context-Error.util";
 
 export default function Route<P extends string>({ path, protect, children, fallback }: RouteProps<P>): ReactNode {
   const context: ReactRouterContextValue<P> | undefined = useContext<ReactRouterContextValue<P> | undefined>(ReactRouterContext);
