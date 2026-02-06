@@ -4,7 +4,10 @@ export type ReactRouterContextValue<P extends string> = {
   pushPath:   ReactRouterPushPath<P>
   popPath:    ReactRouterPopPath
   addPattern: ReactRouterAddPathPattern;
+  asIndex:    ReactRouterAsIndex<P>
 };
+
+type ReactRouterAsIndex<P> = (path: P) => void;
 
 type ReactRouterAddPathPattern = (pattern: string) => void;
 
