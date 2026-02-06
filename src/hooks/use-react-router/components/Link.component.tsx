@@ -6,11 +6,13 @@ import { ReactRouterContext } from "./Routes.component";
 
 import { useContext } from "react";
 
+import ExecutionOutsideContext from "../utils/Error-Outside-Context.util";
+
 export default function Link<P extends string>({ children, ...attributes }: LinkProps<P>): ReactNode {
   const context: ReactRouterContextValue<any> | undefined = useContext(ReactRouterContext);
 
   if(!context) {
-    throw new Error("Link component should be wrapped into Routes component!");
+    throw new ExecutionOutsideContext();
   }
 
   const changePath = (event: MouseEvent<HTMLAnchorElement>): void => {
