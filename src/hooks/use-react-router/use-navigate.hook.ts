@@ -9,7 +9,7 @@ export default function useNavigate(): UseNavigateReturn {
   const context: ReactRouterContextValue<any> | undefined = useContext<ReactRouterContextValue<any> | undefined>(ReactRouterContext);
   
   if(!context) {
-    throw new Error("You should wrapp you App into Routes component!");
+    throw new Error("You should wrap your App into Routes component!");
   }
 
   return function(to: string | -1): void {
