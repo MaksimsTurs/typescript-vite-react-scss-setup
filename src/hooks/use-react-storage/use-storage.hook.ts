@@ -9,6 +9,8 @@ import { useContext, useState, useEffect } from "react";
 import createAsyncAction from "./create-async-action";
 import createStorage from "./create-storage";
 
+import ReactStorageProvider from "./components/React-Storage-Provider.component";
+
 function useStorage<S = unknown>(selector: UseStorageSelector): UseStorageReturn<S> {
   const context: ReactStorageContext = useContext<ReactStorageContext>(ReactStorage);
   const storage: CreateStorageReturn = selector(context);
@@ -51,5 +53,8 @@ function useStorage<S = unknown>(selector: UseStorageSelector): UseStorageReturn
 export {
   createAsyncAction,
   createStorage,
+
   useStorage,
+
+  ReactStorageProvider
 };
