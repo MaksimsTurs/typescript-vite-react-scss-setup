@@ -18,7 +18,7 @@ test("Test the usePath hook with valid paths.", function() {
           pushPath: function(_: any): void {},
           popPath: function(): void {},
           addPattern: function(_: string): void {},
-        }
+          asIndex: function(_): void {}        }
       }>
         {children}
       </ReactRouterContext>
@@ -37,6 +37,7 @@ test("Test the usePath hook without valid paths.", function() {
           pushPath: function(_: any): void {},
           popPath: function(): void {},
           addPattern: function(_: string): void {},
+          asIndex: function(_): void {}
         }
       }>
         {children}
