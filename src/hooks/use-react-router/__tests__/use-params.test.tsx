@@ -18,6 +18,7 @@ test("Test the useParams hook, with paths that have valid params.", function() {
           pushPath: function(_: any): void {},
           popPath: function(): void {},
           addPattern: function(_: string): void {},
+          asIndex: function(_): void {}
         }
       }>
         {children}
@@ -41,6 +42,7 @@ test("Test the useParams hook, with paths that have no params.", function() {
           pushPath: function(_: any): void {},
           popPath: function(): void {},
           addPattern: function(_: string): void {},
+          asIndex: function(_): void {}
         }
       }>
         {children}
@@ -61,6 +63,7 @@ test("Test the useParams hook, wit invalid params.", function() {
           pushPath: function(_: any): void {},
           popPath: function(): void {},
           addPattern: function(_: string): void {},
+          asIndex: function(_): void {}
         }
       }>
         {children}
