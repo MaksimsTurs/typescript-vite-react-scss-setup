@@ -28,7 +28,7 @@ test("Test if error is throwing when rendering component outside the Context.", 
     render(
       <Fragment>
         <Route index path="/"/>
-        <Route index path="/"/>
+        <Route path="/"/>
       </Fragment>
     )
   ).toThrow(ExecutionOutsideContextError);
