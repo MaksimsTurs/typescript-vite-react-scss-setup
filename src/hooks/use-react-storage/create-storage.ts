@@ -1,6 +1,7 @@
 import type { 
 	CreateStorageOptions, 
 	CreateStorageReturn, 
+	StorageActions, 
 	StorageSetParam, 
 	StorageSubscriber, 
 	StorageUnsubscribe, 
@@ -8,18 +9,20 @@ import type {
 } from "./types/create-storage.type";
 
 import { isFunction } from "@util/is.util";
-import wrapActions from "./utils/wrap-actions.util";
+import wrapActions from "./utils/wrapp-actions.util";
 
 export default function createStorage<
-	S = any,
->(options: CreateStorageOptions<S>): CreateStorageReturn {
+  S,
+  A extends StorageActions<S>
+>(options: CreateStorageOptions<S, A>): CreateStorageReturn<S> {
 	const subscribers: StorageSubscriber[] = [];
-	const actions: StorageWrappedActions = wrapActions(options.actions);
+	const actions: StorageWrappedActions<S> = wrapActions<S>(options.actions);
 
-	let state = options.initState;
+	let state: S = options.initState;
 
 	return {
 		actions,
+		asyncActions: options.asyncActions,
 		notify: function(): void {
 			for(let index: number = 0; index < subscribers.length; index++) {
 				const subscriber: StorageSubscriber = subscribers[index];

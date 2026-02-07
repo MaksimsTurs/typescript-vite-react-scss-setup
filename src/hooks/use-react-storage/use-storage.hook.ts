@@ -1,5 +1,6 @@
 import type { UseStorageReturn, UseStorageSelector } from "./types/use-storage.type";
-import type { CreateStorageReturn, StorageAction, StorageActionMetadata, StorageAsyncAction, StorageUnsubscribe } from "./types/create-storage.type";
+import type { CreateStorageReturn, StorageAction, StorageActionMetadata, StorageUnsubscribe } from "./types/create-storage.type";
+import type { AsyncAction } from "./types/create-async-action.type";
 import type { ReactStorageContext } from "./types/React-Storage-Provider.type";
 
 import { ReactStorage } from "./components/React-Storage-Provider.component";
@@ -11,9 +12,9 @@ import createStorage from "./create-storage";
 
 import ReactStorageProvider from "./components/React-Storage-Provider.component";
 
-function useStorage<S = unknown>(selector: UseStorageSelector): UseStorageReturn<S> {
+function useStorage<R = unknown, S = unknown>(selector: UseStorageSelector<S, R>): UseStorageReturn<S> {
   const context: ReactStorageContext = useContext<ReactStorageContext>(ReactStorage);
-  const storage: CreateStorageReturn = selector(context);
+  const storage: CreateStorageReturn<S> = selector(context);
   const [data, dispatcher] = useState<S>(storage.get());
 
   useEffect(() => {
@@ -26,19 +27,19 @@ function useStorage<S = unknown>(selector: UseStorageSelector): UseStorageReturn
 
   function dispatch(metadata: StorageActionMetadata): void {
     if(metadata.isAsync) {
-      const asyncAction: StorageAsyncAction = metadata.fn as StorageAsyncAction;
-      const onPending: StorageAction = storage.actions[`${metadata.type}/pending`];
-      const onRejected: StorageAction = storage.actions[`${metadata.type}/rejected`];
-      const onFulfiled: StorageAction = storage.actions[`${metadata.type}/fulfiled`];
+      const asyncAction: AsyncAction = metadata.fn as AsyncAction;
+      const onPending: StorageAction | undefined = storage.asyncActions[`${metadata.type}/pending`];
+      const onRejected: StorageAction | undefined = storage.asyncActions[`${metadata.type}/rejected`];
+      const onFulfiled: StorageAction | undefined = storage.asyncActions[`${metadata.type}/fulfiled`];
 
-      storage.set(onPending(data, metadata.args));
+      storage.set(onPending?.(data, metadata.args));
 
       asyncAction(metadata.args)
         .then(response => {
-          storage.set(onFulfiled(data, response));
+          storage.set(onFulfiled?.(data, response));
         })
         .catch(reason => {
-          storage.set(onRejected(data, reason));
+          storage.set(onRejected?.(data, reason));
         });
     } else {
       const action: StorageAction = metadata.fn as StorageAction;

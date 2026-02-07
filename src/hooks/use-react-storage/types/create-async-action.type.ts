@@ -1,10 +1,10 @@
 import type { StorageActionMetadata } from "./create-storage.type"
 
-export type CreateAsyncActionReturn<A = any> = {
-  (args?: A):        StorageActionMetadata
-  readonly type:     string
-  readonly isAsync:  boolean
-  readonly pending:  string
-  readonly rejected: string
-  readonly fulfiled: string
+export type AsyncAction<A = any, R = unknown> = (arg?: A) => Promise<R>;
+
+export type AsyncActionWrapper<A = any, R = any> = {
+  (args?: A):        StorageActionMetadata<A, R>
+  readonly pending:  `${string}/pending`
+  readonly rejected: `${string}/rejected`
+  readonly fulfiled: `${string}/fulfiled`
 };

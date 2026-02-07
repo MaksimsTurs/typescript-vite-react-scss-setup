@@ -1,17 +1,19 @@
-import type { CreateAsyncActionReturn } from "./types/create-async-action.type";
-import type { StorageActionMetadata, StorageAsyncAction } from "./types/create-storage.type";
+import type { AsyncAction, AsyncActionWrapper } from "./types/create-async-action.type";
+import type { StorageActionMetadata } from "./types/create-storage.type";
 
-export default function createAsyncAction<R = unknown, A = unknown>(name: string, action: StorageAsyncAction<R, A>): CreateAsyncActionReturn {
-  function asyncAction(args?: A): StorageActionMetadata {
-    return { args, type: name, isAsync: true, fn: action };
+export default function createAsyncAction<A = any, R = unknown>(name: string, action: AsyncAction<A, R>): AsyncActionWrapper<A, R> {
+  function wrapper(args?: A): StorageActionMetadata<A, R> {
+    return { 
+      args, 
+      type: name, 
+      isAsync: true, 
+      fn: action
+    };
   };
 
-  asyncAction.type = name;
-  asyncAction.isAsync = true;
-
-  asyncAction.pending = `${name}/pending`;
-  asyncAction.rejected = `${name}/rejected`;
-  asyncAction.fulfiled = `${name}/fulfiled`;
+  wrapper.pending  = `${name}/pending`  as `${string}/pending`;
+  wrapper.rejected = `${name}/rejected` as `${string}/rejected`;
+  wrapper.fulfiled = `${name}/fulfiled` as `${string}/fulfiled`;
   
-  return asyncAction;
+  return wrapper;
 };

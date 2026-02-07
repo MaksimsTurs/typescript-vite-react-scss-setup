@@ -13,7 +13,9 @@ import { ReactStorageProvider } from "./hooks/use-react-storage/use-storage.hook
 export const { Route, Link } = initRouteComponents<string>();
 
 function App(): ReactNode {
-  return <Fragment>{/* children */}</Fragment>;
+  return(
+    <Fragment>{/* children */}</Fragment>
+  );
 };
 
 createRoot(document.body)
