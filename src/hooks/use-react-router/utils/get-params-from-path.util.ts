@@ -22,7 +22,12 @@ export default function getParamsFromPath<P extends string>(pattern?: string, pa
   for(let index: number = 0; index < patternParts.length; index++) {
     if(hasDynamicPart(patternParts[index])) {
       const key: P = patternParts[index].replace(/\:/, "").trim() as P;
-      params[key] = pathParts[index];
+
+      if(Object.hasOwn(params, key)) {
+        console.warn(`Key "${key}" alredy exist in path "${path}"!`);
+      } else {
+        params[key] = pathParts[index];
+      }
     } else if(patternParts[index] !== pathParts[index]) {
       throw new PathNotMatchPatternError(pattern, path);
     }
