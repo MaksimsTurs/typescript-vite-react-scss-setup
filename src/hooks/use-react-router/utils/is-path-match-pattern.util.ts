@@ -1,7 +1,9 @@
 import hasDynamicPart from "./has-dynamic-part.util";
 
+import { isUndefined } from "@root/utils/is.util";
+
 export default function isPathMatchPattern(pattern: string, path?: string): boolean {
-  if(!path) {
+  if(isUndefined(path)) {
     return false;
   }
 

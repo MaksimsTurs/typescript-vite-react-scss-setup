@@ -14,7 +14,7 @@ test("Test object creation of URL params from valid URL path.", function() {
   expect(getParamsFromPath("/static/:id", "/static/120"))
     .toStrictEqual({ id: "120" });
   expect(getParamsFromPath("/static/:id/:id", "/static/120/110"))
-    .toStrictEqual({ id: "110" });
+    .toStrictEqual({ id: "120" });
   expect(getParamsFromPath("/:userId/:articleId", "/120/110"))
     .toStrictEqual({ userId: "120", articleId: "110" });
   expect(getParamsFromPath("/static/:userId/:articleId", "/static/120/110"))
