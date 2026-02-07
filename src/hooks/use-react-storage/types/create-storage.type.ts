@@ -2,9 +2,9 @@ import type { Dispatch, SetStateAction } from "react";
 import type { AsyncActionWrapper } from "./create-async-action.type";
 
 export type CreateStorageOptions<S, A> = {
-  initState:    S
-  actions:      A
-  asyncActions: StorageAsyncActions<S>
+  initState:     S
+  actions:       A
+  asyncActions?: StorageAsyncActions<S>
 };
 
 export type StorageAsyncActions<S> = Record<`${string}/${"pending" | "rejected" | "fulfiled"}`, StorageAction<S> | undefined>;
@@ -29,12 +29,12 @@ export type StorageActionMetadata<A = any, R = any> = {
 };
 
 export type CreateStorageReturn<S> = {
-  actions:      StorageWrappedActions<S>
-  asyncActions: StorageAsyncActions<S>
-  notify:       StorageNotify
-  subscribe:    StorageSubscribe
-  set:          StorageSet
-  get:          StorageGet
+  actions:       StorageWrappedActions<S>
+  asyncActions?: StorageAsyncActions<S>
+  notify:        StorageNotify
+  subscribe:     StorageSubscribe
+  set:           StorageSet
+  get:           StorageGet
 };
 
 export type StorageSubscriber<S = any> = Dispatch<SetStateAction<S>>;

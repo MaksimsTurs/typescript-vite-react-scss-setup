@@ -19,7 +19,7 @@ function useStorage<R = unknown, S = unknown>(selector: UseStorageSelector<S, R>
 
   useEffect(() => {
     const unsubscribe: StorageUnsubscribe = storage.subscribe(dispatcher);
-
+    
     return (): void => {
       unsubscribe();
     };
@@ -28,9 +28,9 @@ function useStorage<R = unknown, S = unknown>(selector: UseStorageSelector<S, R>
   function dispatch(metadata: StorageActionMetadata): void {
     if(metadata.isAsync) {
       const asyncAction: AsyncAction = metadata.fn as AsyncAction;
-      const onPending: StorageAction | undefined = storage.asyncActions[`${metadata.type}/pending`];
-      const onRejected: StorageAction | undefined = storage.asyncActions[`${metadata.type}/rejected`];
-      const onFulfiled: StorageAction | undefined = storage.asyncActions[`${metadata.type}/fulfiled`];
+      const onPending: StorageAction | undefined = storage.asyncActions?.[`${metadata.type}/pending`];
+      const onRejected: StorageAction | undefined = storage.asyncActions?.[`${metadata.type}/rejected`];
+      const onFulfiled: StorageAction | undefined = storage.asyncActions?.[`${metadata.type}/fulfiled`];
 
       storage.set(onPending?.(data, metadata.args));
 

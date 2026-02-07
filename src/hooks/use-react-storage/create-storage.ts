@@ -20,35 +20,47 @@ export default function createStorage<
 
 	let state: S = options.initState;
 
-	return {
-		actions,
-		asyncActions: options.asyncActions,
-		notify: function(): void {
-			for(let index: number = 0; index < subscribers.length; index++) {
-				const subscriber: StorageSubscriber = subscribers[index];
-				subscriber(state);
-			}
+	return Object.defineProperties<any>({}, {
+		actions: {
+			value: actions
 		},
-		subscribe: function(subscriber: StorageSubscriber): StorageUnsubscribe {
-			const index: number = subscribers.push(subscriber) - 1;
-
-			return (): void => {
-				subscribers.splice(index, 1);
-			};
+		asyncActions: {
+			value: options.asyncActions
 		},
-		set: function(newState: StorageSetParam): void {
-			if(newState !== state) {
-				if(isFunction(newState)) {
-					//@ts-ignore
-					state = newState(state);
-				} else {
-					state = newState;
+		notify: {
+			value: function(): void {
+				for(let index: number = 0; index < subscribers.length; index++) {
+					const subscriber: StorageSubscriber = subscribers[index];
+					subscriber(state);
 				}
 			}
-			this.notify();
 		},
-		get: function(): S {
-			return state;
+		subscribe: {
+			value: function(subscriber: StorageSubscriber): StorageUnsubscribe {
+				const index: number = subscribers.push(subscriber) - 1;
+
+				return (): void => {
+					subscribers.splice(index, 1);
+				};
+			}
 		},
-	};
+		set: {
+			value: function(newState: StorageSetParam): void {
+				if(newState !== state) {
+					if(isFunction(newState)) {
+						//@ts-ignore
+						state = newState(state);
+					} else {
+						state = newState;
+					}
+				}
+				this.notify();
+			}
+		},
+		get: {
+			value: function(): S {
+				return state;
+			},
+		}
+	});
 };
