@@ -3,7 +3,7 @@ import type { AsyncActionWrapper } from "./create-async-action.type";
 
 export type CreateStorageOptions<S, A> = {
   initState:     S
-  actions:       A
+  actions?:      A
   asyncActions?: StorageAsyncActions<S>
 };
 

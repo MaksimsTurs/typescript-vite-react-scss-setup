@@ -22,12 +22,15 @@ export default function createStorage<
 
 	return Object.defineProperties<any>({}, {
 		actions: {
+			enumerable: true,
 			value: actions
 		},
 		asyncActions: {
+			enumerable: true,
 			value: options.asyncActions
 		},
 		notify: {
+			enumerable: true,
 			value: function(): void {
 				for(let index: number = 0; index < subscribers.length; index++) {
 					const subscriber: StorageSubscriber = subscribers[index];
@@ -36,6 +39,7 @@ export default function createStorage<
 			}
 		},
 		subscribe: {
+			enumerable: true,
 			value: function(subscriber: StorageSubscriber): StorageUnsubscribe {
 				const index: number = subscribers.push(subscriber) - 1;
 
@@ -45,6 +49,7 @@ export default function createStorage<
 			}
 		},
 		set: {
+			enumerable: true,
 			value: function(newState: StorageSetParam): void {
 				if(newState !== state) {
 					if(isFunction(newState)) {
@@ -58,6 +63,7 @@ export default function createStorage<
 			}
 		},
 		get: {
+			enumerable: true,
 			value: function(): S {
 				return state;
 			},
