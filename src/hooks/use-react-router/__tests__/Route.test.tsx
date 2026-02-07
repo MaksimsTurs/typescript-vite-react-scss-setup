@@ -1,11 +1,14 @@
 import { test, expect } from "vitest";
 import { render } from "@testing-library/react";
+import { Fragment } from "react/jsx-runtime";
 
 import IndexRouteIsUsedError from "../utils/Index-Route-Is-Used-Error.util";
 
 import { initRouteComponents, Routes } from "../use-react-router.hook";
 
-test("Check if error is throwing when defining multiple Routes as index.", function() {
+import ExecutionOutsideContextError from "../utils/Execution-Outside-Context-Error.util";
+
+test("Test if error is throwing when defining multiple Routes as index.", function() {
   const { Route } = initRouteComponents();
   
   expect(() =>
@@ -18,7 +21,20 @@ test("Check if error is throwing when defining multiple Routes as index.", funct
   ).toThrow(IndexRouteIsUsedError);
 });
 
-test("Check if children that is setted as index is rendered.", function() {
+test("Test if error is throwing when rendering component outside the Context.", function() {
+  const { Route } = initRouteComponents();
+  
+  expect(() =>
+    render(
+      <Fragment>
+        <Route index path="/"/>
+        <Route index path="/"/>
+      </Fragment>
+    )
+  ).toThrow(ExecutionOutsideContextError);
+});
+
+test("Test if children that is setted as index is rendered.", function() {
   const { Route } = initRouteComponents();
   
   const VDOM = render(
