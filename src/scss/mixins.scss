@@ -9,8 +9,8 @@
 	$width:          100%, 
 	$height:         100%
 ) {
-  #{first-pos-prop}:  $left;
-  #{second-pos-prop}: $top;
+  #{$first-pos-prop}:  $left;
+  #{$second-pos-prop}: $top;
   width:              $width;
   height:             $height;
   z-index:            $z-index;
@@ -26,8 +26,8 @@
 	$width:          100%, 
 	$height:         100%
 ) {
-  #{first-pos-prop}:  $left;
-  #{second-pos-prop}: $top;
+  #{$first-pos-prop}:  $left;
+  #{$second-pos-prop}: $top;
   width:              $width;
   height:             $height;
   z-index:            $z-index;
@@ -43,8 +43,8 @@
 	$width:          100%, 
 	$height:         100%
 ) {
-  #{first-pos-prop}:  $left;
-  #{second-pos-prop}: $top;
+  #{$first-pos-prop}:  $left;
+  #{$second-pos-prop}: $top;
   width:              $width;
   height:             $height;
   z-index:            $z-index;
