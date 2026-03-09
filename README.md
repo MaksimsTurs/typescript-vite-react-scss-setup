@@ -11,8 +11,8 @@ Small setup for Typescript + Vite + React + SCSS projects with minimum dependenc
 
 ## [Dependecies](#dependecies)
 ```json
-"react": "^19.2.3",
-"react-dom": "^19.2.3"
+"react": "^19.2.4",
+"react-dom": "^19.2.4"
 ```
 ## [NPM Scripts](#npm-scripts)
 Run only tests.
