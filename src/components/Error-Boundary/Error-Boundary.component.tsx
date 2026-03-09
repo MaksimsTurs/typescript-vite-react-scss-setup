@@ -2,7 +2,7 @@
 
 import { Fragment, Component } from "react";
 
-import type { ErrorInfo, ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { ErrorBoundaryProps, ErrorBoundaryState } from "./Error-Boundary.component.type";
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -15,9 +15,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+  componentDidCatch(error: Error): void {
     console.info(`Error: ${error.message}`)
-    console.info(`Error occured in: ${errorInfo.componentStack}`)
   }
 
   render(): ReactNode {
