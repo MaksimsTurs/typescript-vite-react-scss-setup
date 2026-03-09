@@ -5,12 +5,8 @@ import resolve from "./vite/utils/resolve.util";
 export default defineConfig(() => {
   return {
     test: {
-      onConsoleLog: function(log: string): boolean {
-        if(log) {
-          return false;
-        }
-
-        return true;
+      onConsoleLog: function() {
+        return false;
       },
       environment:  "jsdom",
       isolate:      true,
