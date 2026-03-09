@@ -1,12 +1,10 @@
-import type { Dictionary } from "@root/global.type";
-
 import PathNotMatchPatternError from "./Path-Not-Match-Pattern-Error.util";
 
 import { isUndefined } from "@util/is.util";
 import hasDynamicPart from "./has-dynamic-part.util";
 
-export default function getParamsFromPath<P extends string>(pattern?: string, path?: string): Dictionary<P, string> {
-  const params: Dictionary<P, string> = {};
+export default function getParamsFromPath<P extends string>(pattern?: string, path?: string): Partial<Record<P, string>> {
+  const params: Partial<Record<P, string>> = {};
 
   if(isUndefined(pattern) || isUndefined(path)) {
     return params;

@@ -53,7 +53,6 @@ export default function createStorage<
 			value: function(newState: StorageSetParam): void {
 				if(newState !== state) {
 					if(isFunction(newState)) {
-						//@ts-ignore
 						state = newState(state);
 					} else {
 						state = newState;

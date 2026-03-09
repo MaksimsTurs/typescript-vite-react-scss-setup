@@ -1,5 +1,3 @@
-import type { Constructable } from "@root/global.type";
-
 export const isString     = (something: any): something is string => typeof something === "string";
 export const isNumber     = (something: any): something is number => typeof something === "number";
 export const isBoolean    = (something: any): something is boolean => typeof something === "boolean";

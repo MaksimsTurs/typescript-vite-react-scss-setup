@@ -32,7 +32,7 @@
 			"@reducer/*":   ["./src/reducers/*"],
 			"@scss/*":      ["./src/scss/*"],
 			"@util/*":      ["./src/utils/*"],
-			"@asset/*":     ["./src/assets/*"],
+			"@asset/*":     ["./src/assets/*"]
 		}
-  },
+  }
 }

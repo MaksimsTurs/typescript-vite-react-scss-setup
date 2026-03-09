@@ -2,11 +2,10 @@ import SCallResult from "./SCall-Result.util";
 
 import type { AsyncCallback, SyncCallback } from "./scall.type";
 
-import { isAsync, isSync } from "./utils/is.util";
+import { isAsync } from "./utils/is.util";
+import { isFunction } from "@util/is.util";
 import handleSuccess from "./utils/handle-success.util";
 import handleError from "./utils/handle-error.util";
-
-import { isFunction } from "@util/is.util";
 
 export default function scall<R = unknown, E = unknown>(callback: SyncCallback<R, E>): SCallResult<R, E>
 export default function scall<R = unknown, E = unknown>(callback: AsyncCallback<R, E>): Promise<SCallResult<R, E>>
@@ -22,11 +21,9 @@ export default function scall<R = unknown, E = unknown>(callback: unknown): unkn
     }
 
     try {
-      if(isSync(callback)) {
-        return handleSuccess(callback());
-      }
+      return handleSuccess<R, E>(callback());
     } catch(error) {
-      return handleError(error);
+      return handleError<R, E>(error);
     }
   }
 
